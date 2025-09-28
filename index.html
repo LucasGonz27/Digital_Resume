@@ -1,0 +1,331 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST["message"])) {
+        $message = "Ce message vous a été envoyé via la page contact du site Portfolio.fr\n\n";
+        $message .= "Nom : " . htmlspecialchars($_POST['nom']) . "\n";
+        $message .= "Email : " . htmlspecialchars($_POST['email']) . "\n";
+        $message .= "Tel : " . htmlspecialchars($_POST['tel']) . "\n";
+        $message .= "Message : " . htmlspecialchars($_POST['message']);
+        require 'vendor/autoload.php';
+
+        $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+        try {
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'lucas.gonz2702@gmail.com';
+            $mail->Password = 'xmaa hntf omky vawm';
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
+
+            $mail->setFrom('lucas.gonz2702@gmail.com', 'Portfolio');
+            $mail->addAddress('lucas.gonz2702@gmail.com');
+            $mail->addReplyTo($_POST['email']);
+
+            $mail->Subject = 'Nouveau message de contact';
+            $mail->Body    = $message;
+
+            $mail->send();
+            $success_message = "L'email a bien été envoyé.";
+        } catch (Exception $e) {
+            $error_message = "Erreur lors de l'envoi : {$mail->ErrorInfo}";
+        }
+    }
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script type="text/javascript" src="script.js"></script>
+    <title>CV</title>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="nav-links">
+          <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About me</a></li>
+            <li><a href="">Skill</a></li>
+            <li><a href="">Experience</a></li>
+            <li><a href="">Project</a></li>
+            <li><a href="">Contact</a></li>
+          </ul>
+        </div>
+        <img src="images/menuHamb.png" alt="" class="menu-hamburger" />
+      </nav>
+    </header>
+
+    <main>
+      <section class="home">
+        <div class="nom">
+          <h1><span>Lucas</span></h1>
+          <h1><span>Gonzalez</span></h1>
+        </div>
+        <p>Développeur Web & Logiciel</p>
+      </section>
+
+      <section class="AboutMe">
+        <h1>About me</h1>
+        <div class="content-wrapper">
+          <div class="photo">
+            <img src="images/moi.jpg" alt="Photo de Lucas Gonzalez" />
+          </div>
+
+          <div class="texte">
+            <p>
+              Je m'appelle Lucas Gonzalez, j'ai 20 ans et je suis actuellement
+              étudiant à Epitech Montpellier, où j'intégrerai directement la 3ᵉ
+              année en janvier 2026 dans le cadre d'une formation en alternance.
+              Après un Baccalauréat Général (Mathématiques et SVT) obtenu en
+              2023, j'ai poursuivi mes études avec un BTS SIO option SLAM au
+              lycée Marc Bloch de Sérignan (2024-2025), ce qui m'a permis de
+              consolider mes bases en développement logiciel. <br><br> Passionné par la
+              programmation, je suis à la recherche d'une alternance à partir de
+              janvier 2026 afin de mettre mes compétences en pratique et de
+              progresser dans un environnement professionnel stimulant.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="Skill">
+        <h1>Skill</h1>
+        <div class="content-wrapper">
+          
+
+          <div class="tableauSkill">
+           <img class="rotate-zoom-out" src="images/c.png">
+           <img class="rotate-zoom-out" src="images/css.png">
+           <img class="rotate-zoom-out" src="images/html.png">
+           <img class="rotate-zoom-out" src="images/python.png">
+           <img class="rotate-zoom-out" src="images/php.png">
+           <img class="rotate-zoom-out" src="images/wordpress.png">
+           <img class="rotate-zoom-out" src="images/js.png">
+           <img class="rotate-zoom-out" src="images/sql.png">
+           
+
+          </div>
+        </div>
+      </section>
+
+      <section class="Experience">
+        <h1>Experience</h1>
+        <div class="content-wrapper">
+          <div class="photo">
+            <img src="images/work.jpg" alt="Photo de Lucas Gonzalez" />
+          </div>
+          <div class="TableauExpe">
+           <div class="timeline">
+            <span>Janvier & Fevrier 2025</span>
+                <p>
+                  <strong>Stage – Entreprise indépendante “Audrey Garcia, Secrétaire Administrative”</strong><br><br>
+                  Développement d’un site vitrine professionnel (HTML, CSS, JavaScript, PHP) avec architecture responsive pour améliorer la visibilité des services.
+                <p>
+
+           </div>
+
+           <hr>
+
+           <div class="timeline">
+            <span>Trois saisons</span>
+            <p>
+              <strong>Équipier polyvalent</strong> – McDonald's Montredon-des-Corbières : accueil, service client et travail en équipe.
+            <p>
+           </div>
+
+           <hr>
+
+           <div class="timeline">
+            <span>Mai & juin 2024</span>
+                <p>
+                  <strong>Stage en entreprise Narbonne Accessoires</strong><br><br>
+                   Développement de scripts PHP pour le site Just4Camper, 
+                  création d’un outil interne type “WeTransfer”, redimensionnement d’images et ajout de fonctionnalités au tableau de bord admin.
+                <p>
+
+           </div>
+
+            <hr>
+           
+           <div class="timeline">
+            <span>Mai 2024</span>
+                <p>
+                  <strong>Projet – Association AACRMI </strong><br><br>
+                   Conception et développement d’un blog pour valoriser les activités de 
+                   l’association et améliorer sa visibilité en ligne.
+                <p>
+
+           </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section class="Projet">
+        <h1>Project</h1>
+        <div class="content-wrapper">
+          <div class="containerProjet">
+            <div class="card">
+              <img src="images/aacrmi.jpg" alt="Projet AACRMI">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3>Blog AACRMI</h3>
+                  <p>Développement d'un blog pour l'association AACRMI avec WordPress. Interface moderne et responsive pour valoriser les activités de l'association.</p>
+                  <div class="tech-stack">
+                    <span>WordPress</span>
+                  </div>
+                  <a href="https://aacrmi-section-aude.fr/" class="github-link" target="_blank">
+                     Voir le site
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <img src="images/AppliGonzBoutik.jpg" alt="Application GonzBoutik">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3>GonzBoutik App</h3>
+                  <p>Application mobile de e-commerce développée avec C#. Gestion complète des produits, panier et paiements.</p>
+                  <div class="tech-stack">
+                    <span>C#</span>
+                    <span>SQL</span>
+                  </div>
+                  <a href="#" class="github-link" target="_blank">
+                    <i class="fab fa-github"></i> Voir le code
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <img src="images/audrey.jpg" alt="Site Audrey Garcia">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3>Site Audrey Garcia</h3>
+                  <p>Site vitrine professionnel développé avec HTML, CSS et PHP. Architecture responsive pour améliorer la visibilité des services.</p>
+                  <div class="tech-stack">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>PHP</span>
+                  </div>
+                  <a href="https://www.audreygarcia.fr/" class="github-link" target="_blank">
+                  Voir le site
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <img src="images/deezer.png" alt="Clone Deezer">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3>Clone Deezer</h3>
+                  <p>Réplique de l'interface Deezer développée avec C#. Intégration API, lecture de musique et interface utilisateur moderne.</p>
+                  <div class="tech-stack">
+                    <span>C#</span>
+                    <span>API</span>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            
+            <div class="card">
+              <img src="images/gonzboutikPhp.jpg" alt="GonzBoutik PHP">
+              <div class="overlay">
+                <div class="overlay-content">
+                  <h3>GonzBoutik PHP</h3>
+                  <p>Plateforme e-commerce complète développée en PHP. Gestion des produits, commandes, utilisateurs et tableau de bord administrateur.</p>
+                  <div class="tech-stack">
+                    <span>PHP</span>
+                    <span>MySQL</span>     
+                    <span>HTML</span>
+                    <span>CSS</span>
+                  </div>
+                  <a href="https://github.com/LucasGonz27/GonzBoutikPhp" class="github-link" target="_blank">
+                    <i class="fab fa-github"></i> Voir le code
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="Contact">
+        <h1>Contact</h1>
+        <div class="content-wrapper">
+          <div class="contact-form">
+            
+          
+            <form method="POST" action="">
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="tel">Téléphone</label>
+                <input type="tel" id="tel" name="tel">
+              </div>
+              
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+              </div>
+              
+              <button type="submit" class="submit-btn">Envoyer</button>
+            </form>
+          </div>
+          
+          <div class="contact-info">
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <span>lucas.gonz2702@gmail.com</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <span>+33 6 23 59 60 45</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span>Montpellier, France</span>
+            </div>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/lucas-gonzalez-62a876333/" target="_blank" class="social-link">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+              <a href="https://github.com/LucasGonz27" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+
+     
+    </main>
+
+    <footer>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Lucas Gonzalez. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </body>
+</html>
