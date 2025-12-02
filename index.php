@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
-            $mail->Username = 'lucas.gonz2702@gmail.com';
-            $mail->Password = 'xmaa hntf omky vawm';
+            $mail->Username = 'tonmail';
+            $mail->Password = 'tonmdp';
             $mail->SMTPSecure = 'tls';
             $mail->Port = 587;
 
-            $mail->setFrom('lucas.gonz2702@gmail.com', 'Portfolio');
-            $mail->addAddress('lucas.gonz2702@gmail.com');
+            $mail->setFrom('tonmail', 'Digital Resume');
+            $mail->addAddress('tonmail');
             $mail->addReplyTo($_POST['email']);
 
             $mail->Subject = 'Nouveau message de contact';
